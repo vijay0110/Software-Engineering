@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Enable/Disable debug logging mode{% endblock %}</h1>
+  {% if g.user["is_mod"] %}
+    <a class="action" href="{{ url_for('mod.home') }}">Homepage</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+    <header>
+        <div>
+            <form method="post">
+                {% if current_level == 'INFO' %}
+                    <input type="submit" value="Enable">
+                {% endif %}
+                {% if current_level == 'DEBUG' %}
+                    <input type="submit" value="Disable">
+                {% endif %}
+            </form>
+        </div>
+    </header>
+{% endblock %}

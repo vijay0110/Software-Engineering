@@ -1,0 +1,2 @@
+docker build -t vijay_new_loc/master-of-jokes .
+docker run -p 9000:9000 vijay_new_loc/master-of-jokes

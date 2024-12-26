@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+  <h1>{% block title %}Joke List{% endblock %}</h1>
+  {% if g.user["is_mod"] %}
+    <a class="action" href="{{ url_for('mod.home') }}">Homepage</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for joke in jokes %}
+    <article class="joke">
+      <header>
+        <div>
+          <h1>{{ joke['title'] }}</h1>
+          <h5>{{joke['body']}}</h5>
+          <div class="about">Ratings: {{joke['ratings']}} / 10.00</div>
+          <a class="action" href="{{ url_for('joke.update', joke_id=joke.id) }}">Update</a>
+          <a class="action" href="{{ url_for('joke.delete', joke_id=joke.id) }}">Delete</a>
+        </div>
+      </header>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

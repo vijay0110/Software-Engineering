@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Moderator Action Page{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <ul>
+    <li><a class="action" href="{{ url_for('mod.manage_moderators') }}">Add OR Remove Moderators</a></li>
+    <br>
+    <li><a class="action" href="{{ url_for('mod.manage_user_balances') }}">Edit User Balances</a></li>
+    <br>
+    <li><a class="action" href="{{ url_for('mod.manage_jokes') }}">Remove OR Edit any joke</a></li>
+    <br>
+    <li><a class="action" href="{{ url_for('mod.manage_logging') }}">Enable OR Disable Debug logging</a></li>
+    <br>
+  </ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+  <h1>{% block title %}User's joke balance{% endblock %}</h1>
+  {% if g.user['is_mod'] %}
+    <a class="action" href="{{ url_for('mod.home') }}">Homepage</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for user in users %}
+    <form method="post" action="{{ url_for('mod.manage_user_balances') }}">
+        <article class="joke">
+        <header>
+            <div>
+              <h1>{{ user['nickname'] }}</h1>
+              <h5>{{ user['joke_balance'] }}</h5>
+              <input type="hidden" name="user_id" value="{{user.id}}"/>
+              <input type="number" name="new_joke_balance" value="{{request.form['new_joke_balance']}}" step="1" placeholder="Enter joke balance value"  required>
+              <input type="submit" value="Update Joke Balance">
+            </div>
+        </header>
+        </article>
+    </form>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

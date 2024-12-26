@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+  <h1>{% block title %}Moderators List{% endblock %}</h1>
+  <a class="action" href="{{ url_for('mod.home') }}">Homepage</a>
+  <a class="action" href="{{ url_for('mod.add_moderator') }}">Add Moderator</a>
+
+{% endblock %}
+
+{% block content %}
+  {% for moderator in moderators %}
+    <article class="moderator">
+      <header>
+        <div>
+          <h1>{{ moderator['nickname'] }}</h1>
+          <a class="action" href="{{ url_for('mod.delete_moderator', moderator_id=moderator.id, moderator_nickname=moderator.nickname) }}">Delete</a>
+        </div>
+      </header>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
